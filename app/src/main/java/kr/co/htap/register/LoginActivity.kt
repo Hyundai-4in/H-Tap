@@ -101,7 +101,6 @@ class LoginActivity : AppCompatActivity() {
             .requestIdToken(getString(R.string.default_web_client_id))
             .requestEmail()
             .build()
-
         googleSignInClient = GoogleSignIn.getClient(this, gso)
         // 구글 로그인 버튼 클릭
         googleLoginButton.setOnClickListener {

@@ -100,7 +100,6 @@ class RegisterActivity: AppCompatActivity(){
                     if (task.isSuccessful) {
                         // Sign in success, update UI with the signed-in user's information
                         Log.d("Register", "createUserWithEmail:success")
-
                         // 데이터베이스에 유저 추가
                         val userid = auth.currentUser?.uid.toString()
                         val user = hashMapOf(
