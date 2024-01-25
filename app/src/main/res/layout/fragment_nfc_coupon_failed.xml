@@ -10,7 +10,6 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         app:lottie_rawRes="@raw/x"
-        android:visibility="invisible"
         app:lottie_autoPlay="true"
         app:lottie_loop="false"
         app:layout_constraintTop_toTopOf="@id/guideline"

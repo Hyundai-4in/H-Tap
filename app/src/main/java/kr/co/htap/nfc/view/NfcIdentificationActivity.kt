@@ -142,7 +142,11 @@ class NfcIdentificationActivity : ViewBindingActivity<ActivityNfcEventBinding>()
                             }
                         }
                     }
-                    onFailure(result?.resultMessage ?: "예약을 찾을 수 없습니다.")
+                    if (result == null) {
+                        onFailure("예약을 찾을 수 없습니다.")
+                    } else {
+                        onWarning(result.resultMessage)
+                    }
                 }
             }
 
@@ -177,6 +181,16 @@ class NfcIdentificationActivity : ViewBindingActivity<ActivityNfcEventBinding>()
     private fun onSignInRequired(errorMsg: String) {
         val nfcIdentificationFailedFragment =
             NfcIdentificationFailedFragment.newInstance(errorMsg, true)
+        supportFragmentManager.beginTransaction().apply {
+            replace(binding.nfcFragment.id, nfcIdentificationFailedFragment)
+            addToBackStack(null)
+            commit()
+        }
+    }
+
+    private fun onWarning(warningMsg: String) {
+        val nfcIdentificationFailedFragment =
+            NfcIdentificationWarningFragment.newInstance(warningMsg)
         supportFragmentManager.beginTransaction().apply {
             replace(binding.nfcFragment.id, nfcIdentificationFailedFragment)
             addToBackStack(null)
